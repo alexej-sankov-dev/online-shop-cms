@@ -12,7 +12,7 @@ In the project directory, run the serer on [http://localhost:3001]:
 
 # Data Model
 ## Order
-### Comlumns:
+### Columns:
     orderid - Integer, primary_key
     clientname - String(80, nullable=False
     address - String(120), nullable=False
@@ -24,23 +24,23 @@ In the project directory, run the serer on [http://localhost:3001]:
 
 # Rest API
 
-## Get Orders
+## Get AllOrders
 ### Request
     `GET /orders`
 ### Respone
-    `Body: [{"orderid":x, "clientname":"x", "address":"x","contact":"x", "sum":x, "status":"x"}]`
+    `Body: [{"orderid":x, "clientname":"x", "address":"x","contact":"x", "sum":x, "status":"x"}, ...]`
 
-## Get Orders of a User
+## Get All Orders of a User by id
 ### Request
-    `GET /orders/:id`
+    `GET /orders/:userid`
 ### Respone
-    `Body: [{"orderid":x, "clientname":"x", "address":"x","contact":"x", "sum":x, "status":"x"}]`
+    `Body: [{"orderid":x, "clientname":"x", "address":"x","contact":"x", "sum":x, "status":"x"}, ...]`
 
-## Get Order
+## Get Order by id
 ### Request
-    `GET /order/:id`
+    `GET /order/:orderid`
 ### Respone
-    `Body: {"orderid":x, "clientname":"x", "address":"x","contact":"x", "sum":x, "status":"x"}`
+    `Body: {"orderid":orderid, "clientname":"x", "address":"x","contact":"x", "sum":x, "status":"x"}`
 
 ## Create Order
 ### Request
@@ -54,10 +54,10 @@ In the project directory, run the serer on [http://localhost:3001]:
 ### Request
     `PATCH /order/:id`
     `Body: {"userid"=x, "status":"new_status"}`
-    Checks premission to edit if userid == ownerid
+    Checks premission to edit if userid == Order.ownerid
 ### Respone
     if user is allowed to change:
-    `Body: {"orderid":x, "clientname":"x", "address":"x","contact":"x", "sum":x, "status":"processing"}`
+    `Body: {"orderid":x, "clientname":"x", "address":"x","contact":"x", "sum":x, "status":"new_status"}`
     if user is not allowed to change:
     `Body: {"success":false}`
 
@@ -65,7 +65,7 @@ In the project directory, run the serer on [http://localhost:3001]:
 ### Request
     `DELETE /order/:id`
     `Body: {"userid"=x}`
-    Checks premission to delete if userid == ownerid
+    Checks premission to delete if userid == Order.ownerid
 ### Respone
     if user is allowed to change:
     `Body: {"success":true}`
